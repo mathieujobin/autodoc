@@ -8,4 +8,5 @@ group :test do
   gem "weak_parameters", :git => 'https://github.com/isamu/weak_parameters.git'
   gem "protected_attributes"
   gem "rack-test"
+  gem "nokogiri"
 end
