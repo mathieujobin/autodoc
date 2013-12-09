@@ -1,6 +1,7 @@
 require "active_support/core_ext"
 require "awesome_print"
 require "erb"
+require "nokogiri"
 
 module Autodoc
   class Document
@@ -34,6 +35,8 @@ module Autodoc
     def response_body
       "\n" + JSON.pretty_generate(JSON.parse(response_body_raw))
     rescue JSON::ParserError
+      "\n" + Nokogiri::XML(response_body_raw){ |config| config.strict }.to_xml
+    rescue Nokogiri::XML::SyntaxError
     end
 
     def request_body_section
