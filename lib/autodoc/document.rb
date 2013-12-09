@@ -113,6 +113,10 @@ module Autodoc
       def except
         "except: `#{validator.options[:except].inspect}`" if validator.options[:except]
       end
+      
+      def comment
+        "comment: `#{validator.options[:comment].inspect}`" if validator.options[:comment]
+      end
     end
   end
 end
