@@ -21,6 +21,8 @@ module Autodoc
         ## <%= method %> <%= path %>
         <%= description %>
         <%= parameters_section %>
+        <%= example_get_section %>
+        <%= example_post_section %>
         ### request
         ```
         <%= method %> <%= path %>

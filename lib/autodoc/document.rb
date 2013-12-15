@@ -51,6 +51,18 @@ module Autodoc
       end
     end
 
+    def example_get_section 
+      if request.GET.present?
+        "\n### example GET\n#{request.GET}\n"
+      end
+    end
+    
+    def example_post_section
+      if request.POST.present?
+        "\n### example POST\n#{request.POST}\n"
+      end
+    end
+
     def parameters
       validators.map {|validator| Parameter.new(validator) }.join("\n")
     end
