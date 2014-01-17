@@ -114,7 +114,7 @@ module Autodoc
       end
 
       def assets
-        @assets ||= [required, only, except].compact
+        @assets ||= [required, only, except, comment].compact
       end
 
       def required
