@@ -51,15 +51,32 @@ module Autodoc
       end
     end
 
+    def param2string params
+      param = []
+      params.each_pair{|key, val|
+        if val.is_a?(Array)
+          val.each{|val2|
+            param << "#{key}[]=#{val2}"
+          }
+        elsif val.is_a?(Hash)
+          val.each_pair{|key2, val2|
+            param << "#{key}[#{key2}]=#{val2}"
+          }
+        else
+          param << "#{key}=#{val}"
+        end
+      }
+      param.join('&')
+    end
     def example_get_section 
       if request.GET.present?
-        "\n### example GET\n#{request.GET}\n"
+        "\n### example GET\n#{param2string(request.GET)}\n"
       end
     end
     
     def example_post_section
       if request.POST.present?
-        "\n### example POST\n#{request.POST}\n"
+        "\n### example POST\n#{param2string(request.POST)}\n"
       end
     end
 
@@ -97,7 +114,11 @@ module Autodoc
       end
 
       def to_s
-        "#{body}#{payload}"
+        if validator.type == :hash and validator.options[:comment]
+          validator.options[:comment]
+        else
+          "#{body}#{payload}"
+        end
       end
 
       private
