@@ -173,6 +173,8 @@ module Autodoc
     def response_body_parsed_as_json
       JSON.pretty_generate(JSON.parse(response.body))
     rescue JSON::ParserError
+      "\n" + Nokogiri::XML(response_body_raw){ |config| config.strict }.to_xml
+    rescue Nokogiri::XML::SyntaxError
     end
 
     def controller
@@ -209,6 +211,35 @@ module Autodoc
       end
     end
 
+    def param2string params
+      param = []
+      params.each_pair{|key, val|
+        if val.is_a?(Array)
+          val.each{|val2|
+            param << "#{key}[]=#{val2}"
+          }
+        elsif val.is_a?(Hash)
+          val.each_pair{|key2, val2|
+            param << "#{key}[#{key2}]=#{val2}"
+          }
+        else
+          param << "#{key}=#{val}"
+        end
+      }
+      param.join('&')
+    end
+    def example_get_section 
+      if request.GET.present?
+        "\n### example GET\n#{param2string(request.GET)}\n"
+      end
+    end
+    
+    def example_post_section
+      if request.POST.present?
+        "\n### example POST\n#{param2string(request.POST)}\n"
+      end
+    end
+
     def parameters
       validators.map {|validator| Parameter.new(validator) }.join("\n")
     end
@@ -218,7 +249,11 @@ module Autodoc
     end
 
     def validators
-      WeakParameters.stats[controller][action].try(:validators)
+      if defined?(Sinatra)
+        WeakParameters.stats[method][request.env["PATH_INFO"]].try(:validators)
+      else
+        WeakParameters.stats[controller][action].try(:validators)
+      end
     end
 
     class Parameter
@@ -260,7 +295,7 @@ module Autodoc
       end
 
       def assets
-        @assets ||= [required, only, except].compact
+        @assets ||= [required, only, except, comment].compact
       end
 
       def required
@@ -273,6 +308,10 @@ module Autodoc
 
       def except
         "except: `#{validator.options[:except].inspect}`" if validator.options[:except]
+      end
+      
+      def comment
+        "comment: `#{validator.options[:comment].inspect}`" if validator.options[:comment]
       end
     end
   end
