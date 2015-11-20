@@ -203,6 +203,10 @@ module Autodoc
       example.full_description[%r<(GET|POST|PATCH|PUT|DELETE) ([^ ]+)>, 2]
     end
 
+    def path_info
+      request.env["PATH_INFO"]
+    end
+
     def parameters_section
       if has_validators? && parameters.present?
         "\n### Parameters\n#{parameters}\n"
@@ -218,7 +222,7 @@ module Autodoc
     end
 
     def validators
-      WeakParameters.stats[method][path].try(:validators)
+      WeakParameters.stats[method][path_info].try(:validators)
     end
 
     class Parameter
