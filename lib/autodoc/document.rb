@@ -45,7 +45,7 @@ module Autodoc
     end
 
     def example
-      if ::RSpec::Core::Version::STRING.match /\A(?:3\.|2.99\.)/
+      if ::RSpec::Core::Version::STRING.match(/\A(?:3\.|2.99\.)/)
         @example
       else
         @context.example
@@ -106,7 +106,7 @@ module Autodoc
     end
 
     def request_query
-      "?#{URI.unescape(request.query_string)}" unless request.query_string.empty?
+      "?#{URI.unescape(request.query_string.force_encoding(Encoding::UTF_8))}" unless request.query_string.empty?
     end
 
     def request_body_section
@@ -135,12 +135,9 @@ module Autodoc
     rescue JSON::ParserError
     end
 
-    def response_http_version
-      response.env["HTTP_VERSION"] || "HTTP/1.1"
-    end
-
     def response_header
       table = response.headers.clone
+      table = table.to_hash if table.respond_to?(:to_hash)
       table.except!(*Autodoc.configuration.suppressed_response_header)
       table.map {|key, value| [key, value].join(": ") }.sort.join("\n")
     end
@@ -195,7 +192,7 @@ module Autodoc
       if @context.respond_to?(:description)
         @context.description.strip_heredoc
       else
-        "#{example.description.capitalize}."
+        example.description.sub(/\A./, &:upcase).concat('.')
       end
     end
 

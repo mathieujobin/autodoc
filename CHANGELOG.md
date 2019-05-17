@@ -1,103 +1,276 @@
-## 0.5.2
-- Fix version detector (Thx @kachick)
+# Changelog
 
-## 0.5.1
-- Fix lambda syntax (Thx @highwide)
+All notable changes to this project will be documented in this file.
 
-## 0.5.0
-- Add `Autodoc.configuration.document_path_from_example` (Thx @samuraiT)
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.4.5
-- Support other specs directory than spec/requests (Thx @joe-re)
+## Unreleased
 
-## 0.4.4
-- Support image response (Thx @mzp)
+## 0.7.2 - 2019-01-09
 
-## 0.4.3
-- Support nested parameters on weak_parameters (Thx @mzp)
+### Fixed
 
-## 0.4.2
-- Add HTML Documentation support (Thx @daviddening)
+- Fixed broken symlink on spec/dummy/spec.
 
-## 0.4.1
-- Support RSpec 2.99 (Thx @dex1t)
+## 0.7.1 - 2018-12-18
 
-## 0.4.0
-- Support RSpec 3
+## 0.7.0 - 2018-08-30
 
-## 0.3.6
-- Show dummy message if Content-Type might be BINARY
+### Changed
 
-## 0.3.5
-- Support PATCH method
+- Shell-escape given path.
+- Use `#to_hash` to response headers if it can respond it.
 
-## 0.3.4
-- Some improvements on the document template file
+## 0.6.2 - 2017-08-22
 
-## 0.3.3
-- Fix ToC template for specs in sub-directory
+### Fixed
 
-## 0.3.2
-- Fix template & document bug
+- Support multibyte query parameters.
 
-## 0.3.1
-- prettify JSON request body
-- filter request & response header by Autodoc.configuration.suppress_{request,response}_header
+## 0.6.1 - 2017-05-30
 
-## 0.3.0
-- change Autodoc::Document interface & template to mimic HTTP text
+### Fixed
 
-## 0.2.8
-- include query string into document template
+- Fix Ruby-level warnings.
 
-## 0.2.7
-- sort list in ToC
+## 0.6.0 - 2016-03-03
 
-## 0.2.6
-- fix ToC generator
+### Changed
 
-## 0.2.5
-- add ToC generator
-- use Autodoc.configuration.path to change documents path
+- Change the message capitalization rule.
 
-## 0.2.4
-- add Documents class
+## 0.5.3 - 2016-02-19
 
-## 0.2.3
-- clean up dependencies & implementation
+### Fixed
 
-## 0.2.2
-- fix default documented headers
+- Fix bugs on pending examples.
 
-## 0.2.1
-- fix load dependency on rspec
+## 0.5.2 - 2015-09-18
 
-## 0.2.0
-- remove dependency on awesome_print
+### Fixed
 
-## 0.1.9
-- fix encoding error at ruby 1.9 or earlier versions
+- Fix version detector.
 
-## 0.1.8
-- support rack-test
+## 0.5.1 - 2015-06-28
 
-## 0.1.7
-- change response format from Ruby hash table to JSON object
+### Fixed
 
-## 0.1.6
-- support WeakParameter's :description option
+- Fix lambda syntax.
 
-## 0.1.1
-- custom template
+## 0.5.0 - 2015-04-22
 
-## 0.1.0
-- AUTODOC environment variable
+### Added
 
-## 0.0.8
-- show request body
+- Add `Autodoc.configuration.document_path_from_example`.
 
-## 0.0.3
-- configurable response header
+## 0.4.5 - 2015-04-10
 
-## 0.0.1
-- 1st release on 2013-06-07
+### Added
+
+- Support other specs directory than spec/requests.
+
+## 0.4.4 - 2015-03-31
+
+### Added
+
+- Support image response.
+
+## 0.4.3 - 2015-02-28
+
+### Added
+
+- Support nested parameters on weak_parameters.
+
+## 0.4.2 - 2015-02-13
+
+### Added
+
+- Add HTML Documentation support.
+
+## 0.4.1 - 2015-01-13
+
+### Added
+
+- Support RSpec 2.99.
+
+## 0.4.0 - 2014-10-29
+
+### Added
+
+- Support RSpec 3.
+
+## 0.3.6 - 2014-05-19
+
+### Added
+
+- Show dummy message if Content-Type might be BINARY.
+
+## 0.3.5 - 2014-02-15
+
+### Added
+
+- Support PATCH method.
+
+## 0.3.4 - 2014-01-24
+
+### Added
+
+- Some improvements on the document template file.
+
+## 0.3.3 - 2013-12-30
+
+### Fixed
+
+- Fix ToC template for specs in sub-directory.
+
+## 0.3.2 - 2013-12-18
+
+### Fixed
+
+- Fix template & document bug.
+
+## 0.3.1 - 2013-12-17
+
+### Added
+
+- Filter request & response header by Autodoc.configuration.suppress_{request,response}_header.
+
+### Changed
+
+- Prettify JSON request body.
+
+## 0.3.0 - 2013-12-17
+
+### Changed
+
+- Change Autodoc::Document interface & template to mimic HTTP text.
+
+## 0.2.8 - 2013-12-17
+
+### Changed
+
+- Include query string into document template.
+
+## 0.2.7 - 2013-12-05
+
+### Changed
+
+- Sort list in ToC.
+
+## 0.2.6 - 2013-12-02
+
+### Fixed
+
+- Fix ToC generator.
+
+## 0.2.5 - 2013-11-30
+
+### Added
+
+- Add ToC generator.
+- Use Autodoc.configuration.path to change documents path.
+
+## 0.2.4 - 2013-11-30
+
+### Added
+
+- Add Documents class.
+
+## 0.2.3 - 2013-11-30
+
+### Changed
+
+- Clean up dependencies & implementation.
+
+## 0.2.2 - 2013-11-29
+
+### Fixed
+
+- Fix default documented headers.
+
+## 0.2.1 - 2013-11-29
+
+### Fixed
+
+- Fix load dependency on rspec.
+
+## 0.2.0 - 2013-11-29
+
+### Changed
+
+- Remove dependency on awesome_print.
+
+## 0.1.9 - 2013-11-01
+
+### Fixed
+
+- Fix encoding error at ruby 1.9 or earlier versions.
+
+## 0.1.8 - 2013-10-23
+
+### Added
+
+- Support rack-test.
+
+## 0.1.7 - 2013-10-08
+
+### Changed
+
+- Change response format from Ruby hash table to JSON object.
+
+## 0.1.6 - 2013-09-04
+
+### Added
+
+- Support WeakParameter's :description option.
+
+## 0.1.5 - 2013-08-22
+
+## 0.1.4 - 2013-08-20
+
+## 0.1.3 - 2013-08-20
+
+## 0.1.2 - 2013-07-29
+
+## 0.1.1 - 2013-07-29
+
+### Added
+
+- Custom template.
+
+## 0.1.0 - 2013-07-12
+
+### Added
+
+- AUTODOC environment variable.
+
+## 0.0.9 - 2013-07-08
+
+## 0.0.8 - 2013-07-08
+
+### Changed
+
+- Show request body.
+
+## 0.0.7 - 2013-06-18
+
+## 0.0.6 - 2013-06-14
+
+## 0.0.5 - 2013-06-11
+
+## 0.0.4 - 2013-06-11
+
+## 0.0.3 - 2013-06-11
+
+### Added
+
+- Configurable response header.
+
+## 0.0.2 - 2013-06-10
+
+## 0.0.1 - 2013-06-07
+
+### Added
+
+- 1st release on 2013-06-07.
